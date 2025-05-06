@@ -10,6 +10,11 @@ Este proyecto es una API REST desarrollada con NestJS que permite consultar cate
 - Docker: 24.0.6 (o superior)
 - Docker Compose: 2.23.0 (o superior)
 
+
+## Versiones exactas
+- Docker: 28.0.4
+- Docker Compose: 2.34.0
+
 ## Instrucciones para ejecutar el proyecto
 
 ### 1. Clonar el repositorio
