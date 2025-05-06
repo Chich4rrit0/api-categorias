@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-categorias
+    restart: always
+    ports:
+      - "${PORT:-3000}:3000"
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    networks:
+      - api-network
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  postgres:
+    image: postgres:13-alpine
+    container_name: postgres-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_DATABASE:-categorias}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - api-network
+
+networks:
+  api-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
